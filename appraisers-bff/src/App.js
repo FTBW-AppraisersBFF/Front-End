@@ -10,7 +10,7 @@ import Dashboard from "./components/Dashboard";
 function App() {
   return (
     <div className="App">
-      <Route exact path="/" component={Login} />
+      <Route exact path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
       <PrivateRoute exact path="/dashboard" component={Dashboard} />
     </div>
