@@ -14,7 +14,7 @@ function App() {
       <Route exact path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
       <PrivateRoute exact path="/dashboard" component={Dashboard} />
-      <Route exact path="/account" component={AccountForm}/>
+      <PrivateRoute exact path="/account" component={AccountForm}/>
     </div>
   );
 }
