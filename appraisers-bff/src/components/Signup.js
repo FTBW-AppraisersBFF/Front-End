@@ -11,7 +11,7 @@ const initialUserForm = {
   password: ""
 };
 
-export default function Signup() {
+export default function Signup(props) {
   const [serverError, setServerError] = useState("");
   const [redirect, setRedirect] = useState(false);
 
@@ -26,7 +26,8 @@ export default function Signup() {
         console.log(res.data);
         actions.resetForm();
         console.log("User created successfully"); 
-        setRedirect(true);
+        props.history.push("/Dashboard");
+        // setRedirect(true);
       })
       .catch(err => {
         debugger;
@@ -37,7 +38,7 @@ export default function Signup() {
     <>
       {serverError}
       <UserForm onSubmit={addUser} />
-      {redirect && <Redirect to="/account"/>}
+      {/* {redirect && <Redirect to="/account"/>} */}
     </>
   );
 }
