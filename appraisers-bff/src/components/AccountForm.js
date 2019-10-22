@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from "react";
 import {withFormik, Form, Field} from "formik";
+import {withRouter} from "react-router-dom";
 import * as Yup from "yup";
-import axios from "axios";
+import axiosWithAuth from "../axios";
 
 const AccountForm = ({errors, touched, status}) => {
     const [accountDetails, setAccountDetails] = useState([]);
@@ -119,17 +120,19 @@ const FormikAccountForm = withFormik({
             .required("Number of bathrooms is required")
     }),
     handleSubmit(values, {setStatus, resetForm}) {
-        axios.post("https://appraisersapp.herokuapp.com/houses", values)
+        axiosWithAuth().post("https://appraisersapp.herokuapp.com/api/houses", values)
             .then(res => {
+                debugger
                 console.log(res);
                 setStatus(res.data)
                 resetForm();
             })
             .catch(error => {
+                debugger
                 console.log(error);
             })
     }
 })(AccountForm)
 
-export default FormikAccountForm;
+export default withRouter(FormikAccountForm);
 
