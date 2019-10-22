@@ -37,7 +37,7 @@ const AccountForm = ({errors, touched, status}) => {
                 <label> Year Built
                     <Field
                         type="number"
-                        name="year"
+                        name="yearBuilt"
                         placeholder="year"
                     />
                     {touched.year && errors.year && (
@@ -86,7 +86,7 @@ const FormikAccountForm = withFormik({
     mapPropsToValues({zipCode, year, squareFootage, bedrooms, bathrooms}) {
         return {
             zipCode: zipCode || "",
-            year: year || "",
+            yearBuilt: year || "",
             squareFootage: squareFootage || "",
             bedrooms: bedrooms || "",
             bathrooms: bathrooms || ""
@@ -97,7 +97,7 @@ const FormikAccountForm = withFormik({
             .number()
             .integer("Must be integer")
             .required("Zip Code of house is required"),
-        year: Yup
+        yearBuilt: Yup
             .number().min(1900, "Must be greater than 1900")
             .integer("Must be integer")
             .required("Year house was built is required"),
