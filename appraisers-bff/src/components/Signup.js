@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 import * as yup from "yup";
 
@@ -13,6 +13,7 @@ const initialUserForm = {
 
 export default function Signup() {
   const [serverError, setServerError] = useState("");
+  const [redirect, setRedirect] = useState(false);
 
   const addUser = (formValues, actions) => {
     const userToPost = {
@@ -24,7 +25,8 @@ export default function Signup() {
       .then(res => {
         console.log(res.data);
         actions.resetForm();
-        console.log("User created successfully");
+        console.log("User created successfully"); 
+        setRedirect(true);
       })
       .catch(err => {
         debugger;
@@ -35,6 +37,7 @@ export default function Signup() {
     <>
       {serverError}
       <UserForm onSubmit={addUser} />
+      {redirect && <Redirect to="/account"/>}
     </>
   );
 }
