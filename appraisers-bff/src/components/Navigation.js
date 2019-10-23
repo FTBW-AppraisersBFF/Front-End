@@ -23,6 +23,7 @@ export default function Navigation() {
     <>
 
       <h1>Brand Name</h1>
+<<<<<<< HEAD
       <NavBar>
         <NavLink to="/dashboard">Dashboard</NavLink>
         <NavLink to="/account">Add New House</NavLink>
@@ -32,6 +33,12 @@ export default function Navigation() {
       <UserDiv>
         <h1>Hello, {user}!</h1>
       </UserDiv>
+=======
+      <NavLink to="/dashboard">Dashboard</NavLink>
+      <NavLink to="/account">Add New House</NavLink>
+
+      <h1>{user}</h1>
+>>>>>>> 7bfb376e86cf9c4c2674a898bc109a58ea480130
 
     </>
   );

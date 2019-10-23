@@ -24,13 +24,6 @@ const AccountForm = ({errors, touched, status}) => {
 
     }, [status]);
 
-    return (
-        <>
-        <BodyDiv>
-            <h2>Enter Your House Information Below</h2>
-            <Form>
-
-
 const AccountForm = ({
   setValues,
   errors,
@@ -42,7 +35,7 @@ const AccountForm = ({
 }) => {
   useEffect(() => {
     status && setHouseDetails(houseDetails => [...houseDetails, status]);
-  }, [status]);
+  }, [status])};
 
   return (
     <BodyDiv>
@@ -111,73 +104,7 @@ const AccountForm = ({
   );
 };
 
-                    <Field 
-                        type="number"
-                        name="zipCode"
-                        placeholder="Enter ZIP"
-                    />
-                    {touched.zipCode && errors.zipCode && (
-                        <p>{errors.zipCode}</p>
-                    )}
-                </FormLabel>
-                <FormLabel> Year Built:
-                    <Field
-                        type="number"
-                        name="yearBuilt"
-                        placeholder="year"
-                    />
-                    {touched.year && errors.year && (
-                        <p>{errors.year}</p>
-                    )}
-                </FormLabel>
-                <FormLabel> Square Footage:
-                    <Field 
-                        type="number"
-                        name="squareFootage"
-                        placeholder="Square Feet"
-                    />
-                    {touched.squareFootage && errors.squareFootage && (
-                        <p>{errors.squareFootage}</p>
-                    )}
-                </FormLabel>
-                <FormLabel> Bedrooms:
-                    <Field
-                        type="number"
-                        name="bedrooms"
-                        placeholder="# of Bedrooms"
-                    />
-                    {touched.bedrooms && errors.bedrooms && (
-                        <p>{errors.bedrooms}</p>
-                    )}
-                </FormLabel>
-                <FormLabel> Bathrooms:
-                    <Field 
-                        type="number"
-                        name="bathrooms"
-                        placeholder="# of bathrooms"
-                    />
-                    {touched.bathrooms && errors.bathrooms && (
-                        <p>{errors.bathrooms}</p>
-                    )}
-                </FormLabel>
-                <ButtonDiv>
-                    <FormButton type="submit">Submit</FormButton>
-                    <FormButton type="reset">Reset</FormButton>
-                </ButtonDiv>
-                </FormContainer>
-            </Form>
-            {houseDetails.map(house => (
-                <HouseData key={house.id}
-                price={house.price}
-                squareFootage={house.squareFootage}
-                bedrooms={house.bedrooms}
-                bathrooms={house.bathrooms}
-                zipCode={house.zipCode}
-                yearBuilt={house.yearBuilt}
-                />
-            ))}
-        </BodyDiv>
-        </>
+    
 
 
 
