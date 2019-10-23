@@ -8,15 +8,17 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Dashboard from "./components/Dashboard";
 import AccountForm from "./components/AccountForm";
+import HouseData from "./components/HouseData";
 
 function App() {
   return (
     <div className="App">
-      <Route exact path="/login" component={Navigation} />
+      <Route  path="/" component={Navigation} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/signup" component={Signup} />
       <PrivateRoute exact path="/dashboard" component={Dashboard} />
       <PrivateRoute exact path="/account" component={AccountForm}/>
+      <PrivateRoute exact path="/appraised" component={HouseData}/>
     </div>
   );
 }
