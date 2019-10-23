@@ -9,7 +9,7 @@ const NavBar = styled.nav`
 `
 
 export default function Navigation() {
-  const user = localStorage.getItem('userID');
+  const user = localStorage.getItem("userID");
   return (
     <>
 <<<<<<< HEAD
