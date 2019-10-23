@@ -3,7 +3,6 @@ import {withFormik, Form, Field} from "formik";
 import {withRouter, Link} from "react-router-dom";
 import * as Yup from "yup";
 
-import HouseData from "./HouseData";
 import axiosWithAuth from "../axios";
 
 // imported components

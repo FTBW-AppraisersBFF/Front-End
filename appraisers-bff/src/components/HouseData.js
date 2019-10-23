@@ -20,7 +20,7 @@ const HouseData = props => {
       .then((data) => {
         // debugger
         setHouseList(houseList.filter(house => house.id !== data));
-       window.location.href = "/";
+    //    window.location.reload();
       })
       .catch((err) => {
         debugger
