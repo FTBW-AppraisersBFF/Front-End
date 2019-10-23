@@ -8,6 +8,7 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Dashboard from "./components/Dashboard";
 import AccountForm from "./components/AccountForm";
+import HouseData from "./components/HouseData";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route exact path="/signup" component={Signup} />
       <PrivateRoute exact path="/dashboard" component={Dashboard} />
       <PrivateRoute exact path="/account" component={AccountForm}/>
+      <PrivateRoute exact path="/appraised" component={HouseData}/>
     </div>
   );
 }
