@@ -5,11 +5,14 @@ import * as Yup from "yup";
 
 import axiosWithAuth from "../axios";
 
-const EditForm = ({errors, touched, status}) => {
-    const [houseDetails, setHouseDetails] = useState([]);
-
+const EditForm = ({ match, setValues, errors, touched, status, houseList, setHouseList}) => {
+    // const [houseDetails, setHouseDetails] = useState([]);
+    const id = Number(match.params.id);
     useEffect(() => {
-        status && setHouseDetails(houseDetails => [...houseDetails, status])
+        status && setHouseList(currState => [...currState, status])
+        const house = houseList.find(house => house.id === id);
+        console.log(house, houseList)
+        setValues(house)
     }, [status]
     
     );
@@ -78,13 +81,13 @@ const EditForm = ({errors, touched, status}) => {
 
 
 const FormikEditForm = withFormik({
-    mapPropsToValues({zipCode, year, squareFootage, bedrooms, bathrooms}) {
+    mapPropsToValues({zipCode, yearBuilt, squareFootage, bedrooms, bathrooms}) {
         return {
-            zipCode: zipCode || "",
-            yearBuilt: year || "",
-            squareFootage: squareFootage || "",
-            bedrooms: bedrooms || "",
-            bathrooms: bathrooms || ""
+            zipCode: zipCode ,
+            yearBuilt: yearBuilt ,
+            squareFootage: squareFootage ,
+            bedrooms: bedrooms,
+            bathrooms: bathrooms 
         }
     },
     validationSchema: Yup.object().shape({
@@ -114,12 +117,13 @@ const FormikEditForm = withFormik({
             .max(6, "Must be between 0.5 and 6")
             .required("Number of bathrooms is required")
     }),
-    handleSubmit(values, {setStatus, resetForm}) {
-        axiosWithAuth().post("https://appraisersapp.herokuapp.com/api/houses", values)
+    handleSubmit({zipCode, yearBuilt, squareFootage, bedrooms, bathrooms}, {props, setStatus, resetForm}) {
+        axiosWithAuth().put(`https://appraisersapp.herokuapp.com/api/houses/${props.match.params.id}`, {zipCode, yearBuilt, squareFootage, bedrooms, bathrooms})
             .then(res => {
                 // debugger
                 console.log(res);
                 setStatus(res.data)
+                props.history.push('/appraised')
                 resetForm();
             })
             .catch(error => {
