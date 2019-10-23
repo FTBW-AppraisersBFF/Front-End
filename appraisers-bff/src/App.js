@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Route } from "react-router-dom";
 
 import "./App.css";
@@ -14,23 +14,40 @@ import EditHouse from "./components/EditHouse";
 function App(props) {
   const [houseDetails, setHouseDetails] = useState([]);
   const [houseList, setHouseList] = useState([]);
-  
+
   return (
     <div className="App">
-      <Route  path="/" component={Navigation} />
+      <Route path="/" component={Navigation} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/signup" component={Signup} />
       <PrivateRoute exact path="/dashboard" component={Dashboard} />
-      <PrivateRoute path="/edit/:id" component={EditHouse} props={{
-        houseList, setHouseList, houseDetails, setHouseDetails
-      }}/>
-      <PrivateRoute exact path="/account" component={AccountForm} props={{
-        houseList, setHouseList, houseDetails, setHouseDetails
-      }}/>
-      <PrivateRoute exact path="/appraised" component={HouseData} props={{ houseList, setHouseList
-        // accountList: /*thing from state*/
-        // setAccountList: /*thing from state*/
-      }}/>
+      <PrivateRoute
+        path="/edit/:id"
+        component={EditHouse}
+        props={{
+          houseList,
+          setHouseList,
+          houseDetails,
+          setHouseDetails
+        }}
+      />
+      <PrivateRoute
+        exact
+        path="/account"
+        component={AccountForm}
+        props={{
+          houseList,
+          setHouseList,
+          houseDetails,
+          setHouseDetails
+        }}
+      />
+      <PrivateRoute
+        exact
+        path="/appraised"
+        component={HouseData}
+        props={{ houseList, setHouseList }}
+      />
     </div>
   );
 }
