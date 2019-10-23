@@ -13,12 +13,14 @@ import ButtonDiv from "./styled_components/ButtonDiv";
 import FormContainer from "./styled_components/FormContainer";
 import BodyDiv from "./styled_components/BodyDiv";
 
-const AccountForm = ({errors, touched, status}) => {
-    const [houseDetails, setHouseDetails] = useState([]);
+const AccountForm = ({ setValues, errors, touched, status, accountList, houseDetails, setHouseDetails}) => {
+    // const [houseDetails, setHouseDetails] = useState([]);
 
     useEffect(() => {
         status && setHouseDetails(houseDetails => [...houseDetails, status])
-
+        // if(iseditingsomething > 0) {/** this is a slice of state that hold the id of list item being edited */
+        //     setValues(list.find(item => item.id === iseditingsomething))
+        // }
     }, [status]
     
     );
