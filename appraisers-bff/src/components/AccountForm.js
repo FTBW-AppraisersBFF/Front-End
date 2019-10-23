@@ -14,16 +14,6 @@ const AccountForm = ({errors, touched, status}) => {
     return (
         <div>
             <Form>
-            {/* <label> Password // for updating account password
-                    <Field 
-                        type="password"
-                        name="password"
-                        placeholder="password"
-                    />
-                    {touched.password && errors.password && (
-                        <p>{errors.password}</p>
-                    )} 
-                </label> */}
                 <label> ZIP Code
                     <Field 
                         type="number"
