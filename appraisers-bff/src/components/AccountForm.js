@@ -11,6 +11,7 @@ import FormLabel from "./styled_components/FormLabel";
 import ButtonDiv from "./styled_components/ButtonDiv";
 import FormContainer from "./styled_components/FormContainer";
 import BodyDiv from "./styled_components/BodyDiv";
+import Navigation from "./Navigation";
 
 const AccountForm = ({errors, touched, status}) => {
     const [houseDetails, setHouseDetails] = useState([]);
@@ -20,6 +21,8 @@ const AccountForm = ({errors, touched, status}) => {
     }, [status]);
 
     return (
+        <>
+        <Navigation />
         <BodyDiv>
             <h2>Enter Your House Information Below</h2>
             <Link to="/dashboard">Go to dashboard</Link>
@@ -92,6 +95,7 @@ const AccountForm = ({errors, touched, status}) => {
                 />
             ))}
         </BodyDiv>
+        </>
     )
 }
 
