@@ -2,14 +2,18 @@ import React, {useState, useEffect} from "react";
 import {withFormik, Form, Field} from "formik";
 import {withRouter} from "react-router-dom";
 import * as Yup from "yup";
+
+import HouseData from "./HouseData";
 import axiosWithAuth from "../axios";
 
 const AccountForm = ({errors, touched, status}) => {
-    const [accountDetails, setAccountDetails] = useState([]);
+    const [houseDetails, setHouseDetails] = useState([]);
 
     useEffect(() => {
-        status && setAccountDetails(accountDetails => [...accountDetails, status])
-    }, [status]);
+        status && setHouseDetails(houseDetails => [...houseDetails, status])
+    }, [status]
+    
+    );
 
     return (
         <div>
@@ -67,6 +71,17 @@ const AccountForm = ({errors, touched, status}) => {
                 <button type="submit">Submit</button>
                 <button type="reset">Reset</button>
             </Form>
+
+            {houseDetails.map(house => (
+                <HouseData key={house.id}
+                price={house.price}
+                squareFootage={house.squareFootage}
+                bedrooms={house.bedrooms}
+                bathrooms={house.bathrooms}
+                zipCode={house.zipCode}
+                yearBuilt={house.yearBuilt}
+                />
+            ))}
         </div>
     )
 }
@@ -112,13 +127,13 @@ const FormikAccountForm = withFormik({
     handleSubmit(values, {setStatus, resetForm}) {
         axiosWithAuth().post("https://appraisersapp.herokuapp.com/api/houses", values)
             .then(res => {
-                debugger
+                // debugger
                 console.log(res);
                 setStatus(res.data)
                 resetForm();
             })
             .catch(error => {
-                debugger
+                // debugger
                 console.log(error);
             })
     }
