@@ -20,3 +20,12 @@
 .App-link {
   color: #09d3ac;
 }
+
+Body {
+  background-color: darkblue;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}

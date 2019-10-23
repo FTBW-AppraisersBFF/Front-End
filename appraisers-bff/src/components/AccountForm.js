@@ -2,8 +2,6 @@ import React, {useState, useEffect} from "react";
 import {withFormik, Form, Field} from "formik";
 import {withRouter, Link} from "react-router-dom";
 import * as Yup from "yup";
-
-import HouseData from "./HouseData";
 import axiosWithAuth from "../axios";
 
 // imported components
@@ -13,7 +11,6 @@ import FormLabel from "./styled_components/FormLabel";
 import ButtonDiv from "./styled_components/ButtonDiv";
 import FormContainer from "./styled_components/FormContainer";
 import BodyDiv from "./styled_components/BodyDiv";
-import Navigation from "./Navigation";
 
 const AccountForm = ({errors, touched, status}) => {
     const [houseDetails, setHouseDetails] = useState([]);
@@ -21,17 +18,12 @@ const AccountForm = ({errors, touched, status}) => {
     useEffect(() => {
         status && setHouseDetails(houseDetails => [...houseDetails, status])
 
-    }, [status]
-    
-    );
-
+    }, [status]);
 
     return (
         <>
-        <Navigation />
         <BodyDiv>
             <h2>Enter Your House Information Below</h2>
-            <Link to="/dashboard">Go to dashboard</Link>
             <Form>
 
                 <FormContainer>
@@ -102,14 +94,9 @@ const AccountForm = ({errors, touched, status}) => {
                 yearBuilt={house.yearBuilt}
                 />
             ))}
-<<<<<<< HEAD
         </BodyDiv>
         </>
-=======
 
-        </BodyDiv> 
-
->>>>>>> 9fc83ea0266ec8d31c0e2b1e3a480ef32ae7c83c
     )
 }
 
