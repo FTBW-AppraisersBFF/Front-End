@@ -12,7 +12,7 @@ import AccountForm from "./components/AccountForm";
 function App() {
   return (
     <div className="App">
-      <Route exact path="/login" component={Navigation} />
+      <Route  path="/" component={Navigation} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/signup" component={Signup} />
       <PrivateRoute exact path="/dashboard" component={Dashboard} />
