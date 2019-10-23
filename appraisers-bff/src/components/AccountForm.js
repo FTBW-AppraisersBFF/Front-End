@@ -40,7 +40,6 @@ const AccountForm = ({
   return (
     <BodyDiv>
       <h2>Enter Your House Information Below</h2>
-      <Link to="/dashboard">Go to dashboard</Link>
       <Form>
         <FormContainer>
           <FormLabel>

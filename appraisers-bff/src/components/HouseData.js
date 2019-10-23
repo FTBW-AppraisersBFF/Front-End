@@ -2,12 +2,27 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axiosWithAuth from "../axios";
 
+import FormButton from "../components/styled_components/FormButton";
+
 const HouseDiv = styled.div`
   background-color: white;
-  width: 60%;
-  margin: 0 auto;
+  width: 30%;
+  margin: 10px 10px;
   border: 2px solid black;
+  padding-bottom: 20px;
 `;
+
+const DashboardContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: 0 auto;
+`
+const Title = styled.h1`
+  color: white;
+`
 
 const HouseData = props => {
   const editHouse = id => e => {
@@ -41,28 +56,31 @@ const HouseData = props => {
   }, []);
   return (
     <>
+      <Title>All House Data</Title>
+     <DashboardContainer>
       {props.houseList.map(house => (
         <>
           <HouseDiv key={house.id}>
-            <div> price={house.price}</div>
-            <div> squareFootage={house.squareFootage}</div>
-            <div>bedrooms={house.bedrooms}</div>
-            <div>bathrooms={house.bathrooms}</div>
-            <div> zipCode={house.zipCode}</div>
-            <div> yearBuilt={house.yearBuilt}</div> <br />
-            <button type="button" onClick={editHouse(house.id)}>
+            <h2> Price: {house.price}</h2>
+            <div> Squre Feet: {house.squareFootage}</div>
+            <div> Bedrooms: {house.bedrooms}</div>
+            <div> Bathrooms: {house.bathrooms}</div>
+            <div> Zip Code: {house.zipCode}</div>
+            <div> Year Built: {house.yearBuilt}</div> <br />
+            <FormButton type="button" onClick={editHouse(house.id)}>
               edit
-            </button>
+            </FormButton>
             &nbsp;
-            <button type="button">save</button> &nbsp;
-            <button type="button" onClick={deleteHouse(house)}>
+            <FormButton type="button">save</FormButton> &nbsp;
+            <FormButton type="button" onClick={deleteHouse(house)}>
               delete
-            </button>{" "}
+            </FormButton>{" "}
             &nbsp;
           </HouseDiv>
           <br />
         </>
       ))}
+    </DashboardContainer>
     </>
   );
 };
