@@ -24,8 +24,10 @@ const AccountForm = ({errors, touched, status}) => {
             <h2>Enter Your House Information Below</h2>
             <Link to="/dashboard">Go to dashboard</Link>
             <Form>
+
                 <FormContainer>
                 <FormLabel> ZIP Code:
+
                     <Field 
                         type="number"
                         name="zipCode"
