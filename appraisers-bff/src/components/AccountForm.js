@@ -1,24 +1,39 @@
 import React, {useState, useEffect} from "react";
 import {withFormik, Form, Field} from "formik";
-import {withRouter} from "react-router-dom";
+import {withRouter, Link} from "react-router-dom";
 import * as Yup from "yup";
 
 import HouseData from "./HouseData";
 import axiosWithAuth from "../axios";
+
+// imported components
+import HouseData from "./HouseData";
+import FormButton from "./styled_components/FormButton";
+import FormLabel from "./styled_components/FormLabel";
+import ButtonDiv from "./styled_components/ButtonDiv";
+import FormContainer from "./styled_components/FormContainer";
+import BodyDiv from "./styled_components/BodyDiv";
 
 const AccountForm = ({errors, touched, status}) => {
     const [houseDetails, setHouseDetails] = useState([]);
 
     useEffect(() => {
         status && setHouseDetails(houseDetails => [...houseDetails, status])
+
     }, [status]
     
     );
 
+
     return (
-        <div>
+        <BodyDiv>
+            <h2>Enter Your House Information Below</h2>
+            <Link to="/dashboard">Go to dashboard</Link>
             <Form>
-                <label> ZIP Code
+
+                <FormContainer>
+                <FormLabel> ZIP Code:
+
                     <Field 
                         type="number"
                         name="zipCode"
@@ -27,8 +42,8 @@ const AccountForm = ({errors, touched, status}) => {
                     {touched.zipCode && errors.zipCode && (
                         <p>{errors.zipCode}</p>
                     )}
-                </label>
-                <label> Year Built
+                </FormLabel>
+                <FormLabel> Year Built:
                     <Field
                         type="number"
                         name="yearBuilt"
@@ -37,8 +52,8 @@ const AccountForm = ({errors, touched, status}) => {
                     {touched.year && errors.year && (
                         <p>{errors.year}</p>
                     )}
-                </label>
-                <label> Square Footage
+                </FormLabel>
+                <FormLabel> Square Footage:
                     <Field 
                         type="number"
                         name="squareFootage"
@@ -47,8 +62,8 @@ const AccountForm = ({errors, touched, status}) => {
                     {touched.squareFootage && errors.squareFootage && (
                         <p>{errors.squareFootage}</p>
                     )}
-                </label>
-                <label> Bedrooms
+                </FormLabel>
+                <FormLabel> Bedrooms:
                     <Field
                         type="number"
                         name="bedrooms"
@@ -57,8 +72,8 @@ const AccountForm = ({errors, touched, status}) => {
                     {touched.bedrooms && errors.bedrooms && (
                         <p>{errors.bedrooms}</p>
                     )}
-                </label>
-                <label> Bathrooms
+                </FormLabel>
+                <FormLabel> Bathrooms:
                     <Field 
                         type="number"
                         name="bathrooms"
@@ -67,11 +82,13 @@ const AccountForm = ({errors, touched, status}) => {
                     {touched.bathrooms && errors.bathrooms && (
                         <p>{errors.bathrooms}</p>
                     )}
-                </label>
-                <button type="submit">Submit</button>
-                <button type="reset">Reset</button>
+                </FormLabel>
+                <ButtonDiv>
+                    <FormButton type="submit">Submit</FormButton>
+                    <FormButton type="reset">Reset</FormButton>
+                </ButtonDiv>
+                </FormContainer>
             </Form>
-
             {houseDetails.map(house => (
                 <HouseData key={house.id}
                 price={house.price}
@@ -82,16 +99,18 @@ const AccountForm = ({errors, touched, status}) => {
                 yearBuilt={house.yearBuilt}
                 />
             ))}
-        </div>
+
+        </BodyDiv> 
+
     )
 }
 
 
 const FormikAccountForm = withFormik({
-    mapPropsToValues({zipCode, year, squareFootage, bedrooms, bathrooms}) {
+    mapPropsToValues({zipCode, yearBuilt, squareFootage, bedrooms, bathrooms}) {
         return {
             zipCode: zipCode || "",
-            yearBuilt: year || "",
+            yearBuilt: yearBuilt || "",
             squareFootage: squareFootage || "",
             bedrooms: bedrooms || "",
             bathrooms: bathrooms || ""
@@ -100,6 +119,8 @@ const FormikAccountForm = withFormik({
     validationSchema: Yup.object().shape({
         zipCode: Yup
             .number()
+            .max(99999, "Must be 5 digits in length")
+            .min(10000, "Must be 5 digits in length")
             .integer("Must be integer")
             .required("Zip Code of house is required"),
         yearBuilt: Yup
@@ -127,13 +148,12 @@ const FormikAccountForm = withFormik({
     handleSubmit(values, {setStatus, resetForm}) {
         axiosWithAuth().post("https://appraisersapp.herokuapp.com/api/houses", values)
             .then(res => {
-                // debugger
+
                 console.log(res);
                 setStatus(res.data)
                 resetForm();
             })
             .catch(error => {
-                // debugger
                 console.log(error);
             })
     }
