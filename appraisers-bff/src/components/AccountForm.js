@@ -12,6 +12,8 @@ import FormLabel from "./styled_components/FormLabel";
 import ButtonDiv from "./styled_components/ButtonDiv";
 import FormContainer from "./styled_components/FormContainer";
 import BodyDiv from "./styled_components/BodyDiv";
+import Navigation from "./Navigation";
+
 
 const AccountForm = ({
   setValues,
@@ -92,6 +94,11 @@ const AccountForm = ({
     </BodyDiv>
   );
 };
+
+    )
+}
+
+
 
 const FormikAccountForm = withFormik({
   mapPropsToValues({ zipCode, yearBuilt, squareFootage, bedrooms, bathrooms }) {
