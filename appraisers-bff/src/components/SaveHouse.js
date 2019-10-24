@@ -9,16 +9,11 @@ import FormContainer from "../components/styled_components/FormContainer";
 import FormLabel from "../components/styled_components/FormLabel";
 import FormButton from "../components/styled_components/FormButton";
 
-<<<<<<< HEAD
-const token = localStorage.getItem("token");
-
-=======
 // const token = localStorage.getItem("token");
 const uniqueID = localStorage.getItem("userid");
 // const decodedID = jwt(token);
 
 // console.log(decodedID)
->>>>>>> 832c8bda92df75cb89a30e7f43a88fd1c86f4507
 
 const Title = styled.h1`
   color: white;
@@ -122,11 +117,7 @@ const FormikSaveForm = withFormik({
     axiosWithAuth()
       .post(
         `https://appraisersapp.herokuapp.com/api/fav`,
-<<<<<<< HEAD
-        { name, interestlevel }
-=======
         { name, interestLevel, houseID:props.match.params.id, userID:uniqueID }
->>>>>>> 832c8bda92df75cb89a30e7f43a88fd1c86f4507
       )
       .then(res => {
         debugger
