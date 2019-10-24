@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { withFormik, Form, Field } from "formik";
 import { withRouter } from "react-router-dom";
 import * as Yup from "yup";
-import uuid from 'uuid';
-import jwt from 'jwt-decode';
 import axiosWithAuth from "../axios";
 import styled from "styled-components";
 
