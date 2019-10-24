@@ -15,6 +15,7 @@ import SaveHouse from "./components/SaveHouse";
 function App(props) {
   const [houseDetails, setHouseDetails] = useState([]);
   const [houseList, setHouseList] = useState([]);
+  const [savedHouseList, setSavedHouseList] = useState([]);
 
   return (
     <div className="App">
@@ -22,7 +23,12 @@ function App(props) {
       <h1>Landing page... </h1>
       <Route exact path="/login" component={Login} />
       <Route exact path="/signup" component={Signup} />
-      <PrivateRoute exact path="/dashboard" component={Dashboard} />
+      <PrivateRoute exact path="/dashboard" component={Dashboard} 
+      props={{
+        savedHouseList,
+        setSavedHouseList
+      }}
+      />
       <PrivateRoute
         path="/edit/:id"
         component={EditHouse}
