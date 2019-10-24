@@ -25,7 +25,7 @@ export default function Signup(props) {
       .then(res => {
         console.log(res.data);
         actions.resetForm();
-        console.log("User created successfully"); 
+        console.log("User created successfully", res.data.id); 
         props.history.push("/Dashboard");
         // setRedirect(true);
       })
@@ -87,6 +87,7 @@ const UserForm = ({ onSubmit }) => {
             />
 
             <button type="submit">Create Account </button>
+            <p>Already have account? <Link to="/login"><span>Log in</span></Link></p>
           </Form>
         );
       }}

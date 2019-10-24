@@ -10,6 +10,7 @@ import Dashboard from "./components/Dashboard";
 import AccountForm from "./components/AccountForm";
 import HouseData from "./components/HouseData";
 import EditHouse from "./components/EditHouse";
+import SaveHouse from "./components/SaveHouse";
 
 function App(props) {
   const [houseDetails, setHouseDetails] = useState([]);
@@ -18,12 +19,23 @@ function App(props) {
   return (
     <div className="App">
       <Route path="/" component={Navigation} />
+      <h1>Landing page... </h1>
       <Route exact path="/login" component={Login} />
       <Route exact path="/signup" component={Signup} />
       <PrivateRoute exact path="/dashboard" component={Dashboard} />
       <PrivateRoute
         path="/edit/:id"
         component={EditHouse}
+        props={{
+          houseList,
+          setHouseList,
+          houseDetails,
+          setHouseDetails
+        }}
+      />
+      <PrivateRoute
+        path="/save/:id"
+        component={SaveHouse}
         props={{
           houseList,
           setHouseList,
