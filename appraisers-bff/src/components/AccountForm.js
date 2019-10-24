@@ -80,7 +80,7 @@ const AccountForm = ({
           </ButtonDiv>
         </FormContainer>
       </Form>
-      {houseDetails.map(house => (
+      {/* {houseDetails.map(house => (
         <HouseData
           key={house.id}
           price={house.price}
@@ -90,7 +90,7 @@ const AccountForm = ({
           zipCode={house.zipCode}
           yearBuilt={house.yearBuilt}
         />
-      ))}
+      ))} */}
     </BodyDiv>
   );
 };
@@ -135,12 +135,13 @@ const FormikAccountForm = withFormik({
       .max(6, "Must be between 0.5 and 6")
       .required("Number of bathrooms is required")
   }),
-  handleSubmit(values, { setStatus, resetForm }) {
+  handleSubmit(values, {props, setStatus, resetForm }) {
     axiosWithAuth()
       .post("https://appraisersapp.herokuapp.com/api/houses", values)
       .then(res => {
         console.log(res);
         setStatus(res.data);
+        props.history.push("/appraised");
         resetForm();
       })
       .catch(error => {
