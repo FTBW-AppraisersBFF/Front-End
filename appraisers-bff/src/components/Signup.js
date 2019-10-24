@@ -23,11 +23,8 @@ export default function Signup(props) {
     axios
       .post(SignupApi, userToPost)
       .then(res => {
-        console.log(res.data);
         actions.resetForm();
-        console.log("User created successfully", res.data.id); 
         props.history.push("/Dashboard");
-        // setRedirect(true);
       })
       .catch(err => {
         debugger;

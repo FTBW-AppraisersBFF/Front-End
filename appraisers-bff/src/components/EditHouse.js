@@ -120,14 +120,12 @@ const FormikEditForm = withFormik({
         { zipCode, yearBuilt, squareFootage, bedrooms, bathrooms }
       )
       .then(res => {
-        // debugger
         console.log(res);
         setStatus(res.data);
         props.history.push("/appraised");
         resetForm();
       })
       .catch(error => {
-        // debugger
         console.log(error);
       });
   }

@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import axiosWithAuth from "../axios";
 
 const NavBar = styled.nav`
   display: flex;
@@ -19,10 +18,8 @@ const UserDiv = styled.div`
 export default function Navigation(props) {
   const user = localStorage.getItem("userID");
   const onLogout = () => {
-    // Implement!
-    // 1- We need to flush token from local storage
+
     localStorage.clear();
-    // 2- We need to redirect users to login route
     props.history.replace("/");
   };
   return (

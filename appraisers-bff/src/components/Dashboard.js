@@ -3,9 +3,8 @@ import styled from "styled-components";
 import axiosWithAuth from "../axios";
 
 import FormButton from "../components/styled_components/FormButton";
-const uniqueID = localStorage.getItem("userid");
+
 const userName = localStorage.getItem("userID");
-console.log(userName)
 
 const HouseDiv = styled.div`
   background-color: white;
@@ -47,49 +46,26 @@ const HouseData = props => {
       });
   };
 
-  // const showFav = () => e => {
-  //   axiosWithAuth()
-  //   .post(`https://appraisersapp.herokuapp.com/api/fav/${userName}`, {username:userName})
-  //   .then(res => {
-  //     debugger
-  //     props.setSavedHouseList(res.data);
-  //   })
-  //   .catch(error => {
-  //     debugger
-  //     alert(error.message);
-  //   });
-  // }
-
   useEffect(() => {
-    const user = {
-      username:userName
-    };
     axiosWithAuth()
       .post(`https://appraisersapp.herokuapp.com/api/fav/user`, {username:userName})
       .then(res => {
-        // debugger
         props.setSavedHouseList(res.data);
       })
       .catch(error => {
-        // debugger
         alert(error.message);
       });
-    // deleteHouse();
   }, []);
   return (
     <>
       <Title>All Saved  House Data</Title>
-      {/* <button type="submit" onClick={showFav(userName)}>Show Fav</button> */}
      <DashboardContainer>
       {props.savedHouseList.map(house => (
         <>
           <HouseDiv key={house.id}>
             <h2> Name: {house.name}</h2>
             <div> Price: {house.price}</div>
-            {/* <div> Bedrooms: {house.bedrooms}</div>
-            <div> Bathrooms: {house.bathrooms}</div>
-            <div> Zip Code: {house.zipCode}</div>
-            <div> Year Built: {house.yearBuilt}</div> <br /> */}
+            <div>Level of interest: {house.interestLevel}%</div>
             <FormButton type="button" onClick={editsavedHouse(house.id)}>
               edit
             </FormButton>

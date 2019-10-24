@@ -36,7 +36,6 @@ const HouseData = props => {
     axiosWithAuth()
       .delete(`https://appraisersapp.herokuapp.com/api/houses/${data.id}`)
       .then(data => {
-        // debugger
         props.setHouseList(props.houseList.filter(house => house.id !== data));
         window.location.reload();
       })

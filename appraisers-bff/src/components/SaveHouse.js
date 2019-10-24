@@ -2,20 +2,15 @@ import React, { useState, useEffect } from "react";
 import { withFormik, Form, Field } from "formik";
 import { withRouter } from "react-router-dom";
 import * as Yup from "yup";
-import uuid from 'uuid';
-import jwt from 'jwt-decode';
-import axiosWithAuth from "../axios";
 import styled from "styled-components";
+
+import axiosWithAuth from "../axios";
 
 import FormContainer from "../components/styled_components/FormContainer";
 import FormLabel from "../components/styled_components/FormLabel";
 import FormButton from "../components/styled_components/FormButton";
 
-// const token = localStorage.getItem("token");
 const uniqueID = localStorage.getItem("userid");
-// const decodedID = jwt(token);
-
-// console.log(decodedID)
 
 const Title = styled.h1`
   color: white;
@@ -34,7 +29,6 @@ const SaveForm = ({
   useEffect(() => {
     status && setHouseList(currState => [...currState, status]);
     const house = houseList.find(house => house.id === id);
-    // console.log(house, houseList);
     setValues(house);
   }, [status]);
 
@@ -69,9 +63,7 @@ const SaveForm = ({
 };
 
 const FormikSaveForm = withFormik({
-  mapPropsToValues({ name, interestLevel, houseID, userID, bathrooms, props }) {
-    
-    // console.log(id)
+  mapPropsToValues({ name, interestLevel, houseID, userID }) {
     return {
       name: name || '',
       interestLevel: interestLevel || '',
