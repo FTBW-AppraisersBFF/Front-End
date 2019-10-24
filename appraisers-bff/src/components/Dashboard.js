@@ -29,7 +29,7 @@ const Title = styled.h1`
 
 const HouseData = props => {
   const editsavedHouse = id => e => {
-    props.history.push(`/edit/${id}`);
+    props.history.push(`/api/fav/${id}`);
   };
   
 
