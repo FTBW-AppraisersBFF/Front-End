@@ -16,13 +16,7 @@ import FormContainer from "./styled_components/FormContainer";
 import BodyDiv from "./styled_components/BodyDiv";
 
 
-const AccountForm = ({errors, touched, status}) => {
-    const [houseDetails, setHouseDetails] = useState([]);
 
-    useEffect(() => {
-        status && setHouseDetails(houseDetails => [...houseDetails, status])
-
-    }, [status]);
 
 const AccountForm = ({
   setValues,
@@ -35,7 +29,7 @@ const AccountForm = ({
 }) => {
   useEffect(() => {
     status && setHouseDetails(houseDetails => [...houseDetails, status]);
-  }, [status])};
+  }, [status]);
 
   return (
     <BodyDiv>
