@@ -33,6 +33,7 @@ export default function Login(props) {
       .then(res => {
         localStorage.setItem("userID", userToPost.username);
         localStorage.setItem("token", res.data.token);
+        localStorage.setItem("userid", res.data.userid);
         props.history.push("/Dashboard");
       })
       .catch(err => {

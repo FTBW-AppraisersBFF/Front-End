@@ -9,8 +9,16 @@ import FormContainer from "../components/styled_components/FormContainer";
 import FormLabel from "../components/styled_components/FormLabel";
 import FormButton from "../components/styled_components/FormButton";
 
+<<<<<<< HEAD
 const token = localStorage.getItem("token");
 
+=======
+// const token = localStorage.getItem("token");
+const uniqueID = localStorage.getItem("userid");
+// const decodedID = jwt(token);
+
+// console.log(decodedID)
+>>>>>>> 832c8bda92df75cb89a30e7f43a88fd1c86f4507
 
 const Title = styled.h1`
   color: white;
@@ -49,10 +57,10 @@ const SaveForm = ({
             Interest:  &nbsp;
             <Field
               type="number"
-              name="interestlevel"
+              name="interestLevel"
               placeholder="enter value between 0-100"
             />
-            {touched.interestlevel && errors.interestlevel && <p>{errors.interestlevel}</p>}
+            {touched.interestLevel && errors.interestLevel && <p>{errors.interestLevel}</p>}
           </FormLabel>
           {/* <FormLabel>
             {" "}
@@ -88,12 +96,12 @@ const SaveForm = ({
 };
 
 const FormikSaveForm = withFormik({
-  mapPropsToValues({ name, interestlevel, houseID, userID, bathrooms, props }) {
+  mapPropsToValues({ name, interestLevel, houseID, userID, bathrooms, props }) {
     
     // console.log(id)
     return {
       name: name || '',
-      interestlevel: interestlevel || '',
+      interestLevel: interestLevel || '',
       houseID: houseID,
       userID: userID,
     };
@@ -101,20 +109,24 @@ const FormikSaveForm = withFormik({
   validationSchema: Yup.object().shape({
     name: Yup.string()
       .required("Title is required"),
-    interestlevel: Yup.number()
+    interestLevel: Yup.number()
       .min(0, "Must be 0 or greater than 0")
       .max(100, "Must be between 0 and 100")
       .integer("Must be integer")
       .required("interest level is required"),
   }),
   handleSubmit(
-    { name, interestlevel, houseID, userID },
-    { props, setStatus, resetForm },id
+    { name, interestLevel, houseID, userID },
+    { props, setStatus, resetForm },
   ) {
     axiosWithAuth()
       .post(
         `https://appraisersapp.herokuapp.com/api/fav`,
+<<<<<<< HEAD
         { name, interestlevel }
+=======
+        { name, interestLevel, houseID:props.match.params.id, userID:uniqueID }
+>>>>>>> 832c8bda92df75cb89a30e7f43a88fd1c86f4507
       )
       .then(res => {
         debugger
