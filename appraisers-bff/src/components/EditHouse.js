@@ -2,8 +2,16 @@ import React, { useState, useEffect } from "react";
 import { withFormik, Form, Field } from "formik";
 import { withRouter } from "react-router-dom";
 import * as Yup from "yup";
-
 import axiosWithAuth from "../axios";
+import styled from "styled-components";
+
+import FormContainer from "../components/styled_components/FormContainer";
+import FormLabel from "../components/styled_components/FormLabel";
+import FormButton from "../components/styled_components/FormButton";
+
+const Title = styled.h1`
+  color: white;
+`
 
 const EditForm = ({
   match,
@@ -24,40 +32,43 @@ const EditForm = ({
 
   return (
     <div>
+      <Title>Edit House</Title>
       <Form>
-        <label>
+        <FormContainer>
+        <FormLabel>
           {" "}
           ZIP Code
           <Field type="number" name="zipCode" placeholder="Enter ZIP" />
           {touched.zipCode && errors.zipCode && <p>{errors.zipCode}</p>}
-        </label>
-        <label>
+        </FormLabel>
+        <FormLabel>
           {" "}
           Year Built
           <Field type="number" name="yearBuilt" placeholder="year" />
           {touched.year && errors.year && <p>{errors.year}</p>}
-        </label>
-        <label>
+        </FormLabel>
+        <FormLabel>
           {" "}
           Square Footage
           <Field type="number" name="squareFootage" placeholder="Square Feet" />
           {touched.squareFootage && errors.squareFootage && (
             <p>{errors.squareFootage}</p>
           )}
-        </label>
-        <label>
+        </FormLabel>
+        <FormLabel>
           {" "}
           Bedrooms
           <Field type="number" name="bedrooms" placeholder="# of Bedrooms" />
           {touched.bedrooms && errors.bedrooms && <p>{errors.bedrooms}</p>}
-        </label>
-        <label>
+        </FormLabel>
+        <FormLabel>
           {" "}
           Bathrooms
           <Field type="number" name="bathrooms" placeholder="# of bathrooms" />
           {touched.bathrooms && errors.bathrooms && <p>{errors.bathrooms}</p>}
-        </label>
-        <button type="submit">Submit</button>
+        </FormLabel>
+        <FormButton type="submit">Submit</FormButton>
+        </FormContainer>
       </Form>
     </div>
   );

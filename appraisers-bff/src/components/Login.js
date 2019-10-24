@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import * as yup from "yup";
 
+import FormButton from "../components/styled_components/FormButton";
+import FormContainer from "./styled_components/FormContainer";
+import FormLabel from "./styled_components/FormLabel";
+
 const LoginApi = "https://appraisersapp.herokuapp.com/api/auth/login";
 
 const initialUserForm = {
@@ -58,31 +62,35 @@ const UserForm = ({ onSubmit }) => {
         return (
           <Form>
             <h1>LOGIN</h1>
-            <Field
-              className="input-field"
-              name="username"
-              type="text"
-              placeholder="Username"
-            />
-            <ErrorMessage
-              className="error-field"
-              name="username"
-              component="div"
-            />
-
-            <Field
-              className="input-field"
-              name="password"
-              type="password"
-              placeholder="Password"
-            />
-            <ErrorMessage
-              className="error-field"
-              name="password"
-              component="div"
-            />
-
-            <button type="submit">Login </button>
+            <FormContainer>
+              <FormLabel> 
+                <Field
+                  className="input-field"
+                  name="username"
+                  type="text"
+                  placeholder="Username"
+                />
+                <ErrorMessage
+                  className="error-field"
+                  name="username"
+                  component="div"
+                />
+              </FormLabel>
+              <FormLabel>
+                <Field
+                  className="input-field"
+                  name="password"
+                  type="password"
+                  placeholder="Password"
+                />
+                <ErrorMessage
+                  className="error-field"
+                  name="password"
+                  component="div"
+                />
+              </FormLabel>
+            <FormButton type="submit">Login </FormButton>
+            </FormContainer>
           </Form>
         );
       }}
