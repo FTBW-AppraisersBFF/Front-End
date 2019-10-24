@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { withFormik, Form, Field } from "formik";
 import { withRouter } from "react-router-dom";
 import * as Yup from "yup";
-import uuid from 'uuid';
-import jwt from 'jwt-decode';
 import axiosWithAuth from "../axios";
 import styled from "styled-components";
 
@@ -12,9 +10,7 @@ import FormLabel from "../components/styled_components/FormLabel";
 import FormButton from "../components/styled_components/FormButton";
 
 const token = localStorage.getItem("token");
-const decodedID = jwt(token);
 
-console.log(decodedID)
 
 const Title = styled.h1`
   color: white;
@@ -118,7 +114,7 @@ const FormikSaveForm = withFormik({
     axiosWithAuth()
       .post(
         `https://appraisersapp.herokuapp.com/api/fav`,
-        { name, interestlevel, houseID:decodedID.id, userID: decodedID.id }
+        { name, interestlevel }
       )
       .then(res => {
         debugger

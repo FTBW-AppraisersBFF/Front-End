@@ -66,8 +66,8 @@ const UserForm = ({ onSubmit }) => {
       render={props => {
         return (
           <Form>
-            <Title>LOGIN</Title>
             <FormContainer>
+              <h1>LOGIN</h1>
               <FormLabel> 
                 <Field
                   className="input-field"

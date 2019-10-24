@@ -3,6 +3,9 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 import * as yup from "yup";
+import FormContainer from "./styled_components/FormContainer";
+import FormLabel from "./styled_components/FormLabel";
+import FormButton from "./styled_components/FormButton";
 
 const SignupApi = "https://appraisersapp.herokuapp.com/api/auth/register";
 
@@ -61,7 +64,9 @@ const UserForm = ({ onSubmit }) => {
       render={props => {
         return (
           <Form>
+            <FormContainer>
             <h1>SIGN UP</h1>
+            <FormLabel>
             <Field
               className="input-field"
               name="username"
@@ -73,7 +78,8 @@ const UserForm = ({ onSubmit }) => {
               name="username"
               component="div"
             />
-
+            </FormLabel>
+            <FormLabel>
             <Field
               className="input-field"
               name="password"
@@ -85,9 +91,10 @@ const UserForm = ({ onSubmit }) => {
               name="password"
               component="div"
             />
-
-            <button type="submit">Create Account </button>
+            </FormLabel>
+            <FormButton type="submit">Create Account </FormButton>
             <p>Already have account? <Link to="/login"><span>Log in</span></Link></p>
+            </FormContainer>
           </Form>
         );
       }}
