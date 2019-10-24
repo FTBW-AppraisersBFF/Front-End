@@ -87,6 +87,7 @@ const UserForm = ({ onSubmit }) => {
             />
 
             <button type="submit">Create Account </button>
+            <p>Already have account? <Link to="/login"><span>Log in</span></Link></p>
           </Form>
         );
       }}

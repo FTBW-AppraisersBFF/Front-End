@@ -90,6 +90,7 @@ const UserForm = ({ onSubmit }) => {
                 />
               </FormLabel>
             <FormButton type="submit">Login </FormButton>
+            <p>New User? <Link to="/signup"><span>Sign up</span></Link></p>
             </FormContainer>
           </Form>
         );
