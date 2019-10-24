@@ -8,7 +8,6 @@ import * as Yup from "yup";
 import axiosWithAuth from "../axios";
 
 // imported components
-import HouseData from "./HouseData";
 import FormButton from "./styled_components/FormButton";
 import FormLabel from "./styled_components/FormLabel";
 import ButtonDiv from "./styled_components/ButtonDiv";
@@ -23,7 +22,6 @@ const AccountForm = ({
   errors,
   touched,
   status,
-  accountList,
   houseDetails,
   setHouseDetails
 }) => {
@@ -82,17 +80,6 @@ const AccountForm = ({
           </ButtonDiv>
         </FormContainer>
       </Form>
-      {/* {houseDetails.map(house => (
-        <HouseData
-          key={house.id}
-          price={house.price}
-          squareFootage={house.squareFootage}
-          bedrooms={house.bedrooms}
-          bathrooms={house.bathrooms}
-          zipCode={house.zipCode}
-          yearBuilt={house.yearBuilt}
-        />
-      ))} */}
     </BodyDiv>
   );
 };
@@ -141,7 +128,6 @@ const FormikAccountForm = withFormik({
     axiosWithAuth()
       .post("https://appraisersapp.herokuapp.com/api/houses", values)
       .then(res => {
-        console.log(res);
         setStatus(res.data);
         props.history.push("/appraised");
         resetForm();

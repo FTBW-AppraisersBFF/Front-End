@@ -21,10 +21,8 @@ const UserDiv = styled.div`
 export default function Navigation(props) {
   const user = localStorage.getItem("userID");
   const onLogout = () => {
-    // Implement!
-    // 1- We need to flush token from local storage
+
     localStorage.clear();
-    // 2- We need to redirect users to login route
     props.history.replace("/");
   };
   return (
