@@ -113,12 +113,12 @@ const FormikSaveForm = withFormik({
   }),
   handleSubmit(
     { name, interestlevel, houseID, userID },
-    { props, setStatus, resetForm },id
+    { props, setStatus, resetForm },
   ) {
     axiosWithAuth()
       .post(
         `https://appraisersapp.herokuapp.com/api/fav`,
-        { name, interestlevel, houseID:decodedID.id, userID: decodedID.id }
+        { name, interestlevel, houseID:props.match.params.id, userID: decodedID.id }
       )
       .then(res => {
         debugger
