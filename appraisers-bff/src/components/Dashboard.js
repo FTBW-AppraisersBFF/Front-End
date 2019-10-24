@@ -29,23 +29,23 @@ const Title = styled.h1`
 
 const HouseData = props => {
   const editsavedHouse = id => e => {
-    props.history.push(`/edit/${id}`);
+    props.history.push(`/api/fav/${id}`);
   };
   
 
-  // const deleteHouse = data => e => {
-  //   axiosWithAuth()
-  //     .delete(`https://appraisersapp.herokuapp.com/api/fav/${uniqueID}`)
-  //     .then(data => {
-  //       // debugger
-  //       props.setHouseList(props.houseList.filter(house => house.id !== data));
-  //       window.location.reload();
-  //     })
-  //     .catch(err => {
-  //       debugger;
-  //       console.log(err);
-  //     });
-  // };
+  const deleteSavedHouse = data => e => {
+    axiosWithAuth()
+      .delete(`https://appraisersapp.herokuapp.com/api/fav/${data.id}`)
+      .then(data => {
+        // debugger
+        props.setSavedHouseList(props.savedHouseList.filter(house => house.id !== data));
+        window.location.reload();
+      })
+      .catch(err => {
+        debugger;
+        console.log(err);
+      });
+  };
 
   // const showFav = () => e => {
   //   axiosWithAuth()
@@ -95,7 +95,7 @@ const HouseData = props => {
             </FormButton>
             &nbsp;
             
-            <FormButton type="button">
+            <FormButton type="button" onClick={deleteSavedHouse(house)}>
               delete
             </FormButton>{" "}
             &nbsp;

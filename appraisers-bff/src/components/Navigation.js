@@ -39,6 +39,8 @@ export default function Navigation(props) {
         </NavLink>
         {user ? <NavLink to="/" onClick={onLogout} activeClassName="logout">Logout</NavLink> : <NavLink to="/login">Login</NavLink>}
         <NavLink to="/signup">Sign up</NavLink>
+        <NavLink to="/appraised">Appraised</NavLink>
+        <NavLink to="/" onClick={onLogout}>Logout</NavLink>
       </NavBar>
       {user && (
         <UserDiv>

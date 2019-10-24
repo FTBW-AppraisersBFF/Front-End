@@ -10,6 +10,7 @@ import Dashboard from "./components/Dashboard";
 import AccountForm from "./components/AccountForm";
 import HouseData from "./components/HouseData";
 import EditHouse from "./components/EditHouse";
+import EditSavedHouse from "./components/EditSavedHouse";
 import SaveHouse from "./components/SaveHouse";
 
 function App(props) {
@@ -36,6 +37,14 @@ function App(props) {
           setHouseList,
           houseDetails,
           setHouseDetails
+        }}
+      />
+            <PrivateRoute
+        path="/api/fav/:id"
+        component={EditSavedHouse}
+        props={{
+          savedHouseList,
+          setSavedHouseList
         }}
       />
       <PrivateRoute

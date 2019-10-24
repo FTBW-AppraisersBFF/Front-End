@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { withFormik, Form, Field } from "formik";
 import { withRouter } from "react-router-dom";
 import * as Yup from "yup";
+import uuid from 'uuid';
+import jwt from 'jwt-decode';
 import axiosWithAuth from "../axios";
 import styled from "styled-components";
 
@@ -19,26 +21,26 @@ const Title = styled.h1`
   color: white;
 `;
 
-const SaveForm = ({
+const EditSavedForm = ({
   match,
   setValues,
   errors,
   touched,
   status,
-  houseList,
-  setHouseList
+  savedHouseList,
+  setSavedHouseList
 }) => {
   const id = Number(match.params.id);
   useEffect(() => {
-    status && setHouseList(currState => [...currState, status]);
-    const house = houseList.find(house => house.id === id);
+    status && setSavedHouseList(currState => [...currState, status]);
+    const house = savedHouseList.find(house => house.id === id);
     // console.log(house, houseList);
     setValues(house);
   }, [status]);
 
   return (
     <div>
-      <Title>Save House</Title>
+      <Title>Edit Save House</Title>
       <Form>
         <FormContainer>
           <FormLabel>
@@ -66,8 +68,8 @@ const SaveForm = ({
   );
 };
 
-const FormikSaveForm = withFormik({
-  mapPropsToValues({ name, interestLevel, houseID, userID, bathrooms, props }) {
+const FormikEditSavedForm = withFormik({
+  mapPropsToValues({ name, interestLevel, houseID, userID, props }) {
     
     // console.log(id)
     return {
@@ -91,12 +93,12 @@ const FormikSaveForm = withFormik({
     { props, setStatus, resetForm },
   ) {
     axiosWithAuth()
-      .post(
-        `https://appraisersapp.herokuapp.com/api/fav`,
+      .put(
+        `https://appraisersapp.herokuapp.com/api/fav/${props.match.params.id}`,
         { name, interestLevel, houseID:props.match.params.id, userID:uniqueID }
       )
       .then(res => {
-        // debugger
+        debugger
         setStatus(res.data);
         console.log("Successfully Saved!");
         props.history.push("/dashboard");
@@ -107,6 +109,6 @@ const FormikSaveForm = withFormik({
         console.log(error);
       });
   }
-})(SaveForm);
+})(EditSavedForm);
 
-export default withRouter(FormikSaveForm);
+export default withRouter(FormikEditSavedForm);
