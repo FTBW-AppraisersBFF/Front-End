@@ -3,10 +3,15 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import * as yup from "yup";
+import styled from "styled-components";
 
 import FormButton from "../components/styled_components/FormButton";
 import FormContainer from "./styled_components/FormContainer";
 import FormLabel from "./styled_components/FormLabel";
+
+const Title = styled.h1`
+  color: white;
+`
 
 const LoginApi = "https://appraisersapp.herokuapp.com/api/auth/login";
 
@@ -61,7 +66,7 @@ const UserForm = ({ onSubmit }) => {
       render={props => {
         return (
           <Form>
-            <h1>LOGIN</h1>
+            <Title>LOGIN</Title>
             <FormContainer>
               <FormLabel> 
                 <Field
