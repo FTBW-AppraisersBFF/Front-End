@@ -5,6 +5,9 @@ import styled from "styled-components";
 const NavBar = styled.nav`
   display: flex;
   justify-content: space-around;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid silver
 `;
 
 const UserDiv = styled.div`
@@ -24,7 +27,7 @@ export default function Navigation(props) {
   };
   return (
     <>
-      <h1>Brand Name</h1>
+      <h1>Zwillow</h1>
       <NavBar>
         <NavLink to="/dashboard" activeClassName="active">
           Dashboard
@@ -32,10 +35,8 @@ export default function Navigation(props) {
         <NavLink to="/account" activeClassName="active">
           Add New House
         </NavLink>
-        <NavLink to="/login">Login</NavLink>
-        <NavLink to="/signup">Sign up</NavLink>
         <NavLink to="/appraised">Appraised</NavLink>
-        <NavLink to="/" onClick={onLogout}>Logout</NavLink>
+        {user ? <NavLink to="/" onClick={onLogout} activeClassName="logout">Logout</NavLink> : <NavLink to="/login">Login</NavLink>}
       </NavBar>
       {user && (
         <UserDiv>

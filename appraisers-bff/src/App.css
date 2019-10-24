@@ -28,6 +28,7 @@ Body {
 a {
   color: white;
   text-decoration: none;
+  padding: 10px;
 }
 
 .active {
@@ -35,3 +36,4 @@ a {
   background-color: yellow;
   color: black;
 }
+
