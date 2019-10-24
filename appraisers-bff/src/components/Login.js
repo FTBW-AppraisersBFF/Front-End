@@ -34,7 +34,7 @@ export default function Login(props) {
         localStorage.setItem("userID", userToPost.username);
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("userid", res.data.userid);
-        props.history.push("/Dashboard");
+        props.history.push("/account");
       })
       .catch(err => {
         debugger;

@@ -88,10 +88,9 @@ const FormikEditSavedForm = withFormik({
     axiosWithAuth()
       .put(
         `https://appraisersapp.herokuapp.com/api/fav/${props.match.params.id}`,
-        { name, interestLevel, houseID:props.match.params.id, userID:uniqueID }
+        { name, interestLevel, houseID:houseID, userID:uniqueID }
       )
       .then(res => {
-        debugger
         setStatus(res.data);
         console.log("Successfully Saved!");
         props.history.push("/dashboard");
