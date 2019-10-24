@@ -10,6 +10,7 @@ import Dashboard from "./components/Dashboard";
 import AccountForm from "./components/AccountForm";
 import HouseData from "./components/HouseData";
 import EditHouse from "./components/EditHouse";
+import SaveHouse from "./components/SaveHouse";
 
 function App(props) {
   const [houseDetails, setHouseDetails] = useState([]);
@@ -25,6 +26,16 @@ function App(props) {
       <PrivateRoute
         path="/edit/:id"
         component={EditHouse}
+        props={{
+          houseList,
+          setHouseList,
+          houseDetails,
+          setHouseDetails
+        }}
+      />
+      <PrivateRoute
+        path="/save/:id"
+        component={SaveHouse}
         props={{
           houseList,
           setHouseList,

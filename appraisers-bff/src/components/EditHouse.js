@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import { withFormik, Form, Field } from "formik";
 import { withRouter } from "react-router-dom";
 import * as Yup from "yup";
+
 import axiosWithAuth from "../axios";
 import styled from "styled-components";
 
 import FormContainer from "../components/styled_components/FormContainer";
 import FormLabel from "../components/styled_components/FormLabel";
 import FormButton from "../components/styled_components/FormButton";
+
+
 
 const Title = styled.h1`
   color: white;
@@ -45,7 +48,7 @@ const EditForm = ({
           {" "}
           Year Built
           <Field type="number" name="yearBuilt" placeholder="year" />
-          {touched.year && errors.year && <p>{errors.year}</p>}
+          {touched.yearBuilt && errors.yearBuilt && <p>{errors.yearBuilt}</p>}
         </FormLabel>
         <FormLabel>
           {" "}

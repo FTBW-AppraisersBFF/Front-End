@@ -28,6 +28,9 @@ const HouseData = props => {
   const editHouse = id => e => {
     props.history.push(`/edit/${id}`);
   };
+  const saveHouse = id => e => {
+    props.history.push(`/save/${id}`);
+  };
 
   const deleteHouse = data => e => {
     axiosWithAuth()
@@ -71,7 +74,7 @@ const HouseData = props => {
               edit
             </FormButton>
             &nbsp;
-            <FormButton type="button">save</FormButton> &nbsp;
+            <FormButton type="button" onClick={saveHouse(house.id)}>save</FormButton> &nbsp;
             <FormButton type="button" onClick={deleteHouse(house)}>
               delete
             </FormButton>{" "}
